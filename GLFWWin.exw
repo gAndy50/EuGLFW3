@@ -26,4 +26,3 @@ while not glfwWindowShouldClose(win) do
 end while
 
 glfwTerminate()
-­10.9
