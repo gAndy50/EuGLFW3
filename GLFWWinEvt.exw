@@ -3,7 +3,7 @@ without warning
 include EuGLFW3.ew
 
 public constant GL_TRUE = 1,
-		GL_FALSE = 0
+				GL_FALSE = 0
 
 atom win
 
@@ -26,13 +26,13 @@ glfwSwapInterval(1)
 
 glfwSetInputMode(win,GLFW_STICKY_KEYS,1)
 
-atom state = glfwGetKey(win,GLFW_KEY_ESCAPE)
-
-if state = GLFW_PRESS then
-	glfwWindowShouldClose(win)
-end if
-
 while not glfwWindowShouldClose(win) do
+
+   atom key = glfwGetKey(win,GLFW_KEY_ESCAPE)
+   
+	if key = GLFW_PRESS then
+		glfwTerminate()
+	end if
 
 	glfwSwapBuffers(win)
 	glfwPollEvents()
