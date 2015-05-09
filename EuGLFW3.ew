@@ -335,13 +335,7 @@ public constant xglfwCreateWindow = define_c_func(gl,"glfwCreateWindow",{C_INT,C
 
 public function glfwCreateWindow(integer w,integer h,sequence title,atom mon,atom sha)
 
- atom str,ret
- 
- str = allocate_string(title)
- 
- ret = c_func(xglfwCreateWindow,{w,h,str,mon,sha})
- 
- return ret
+return c_func(xglfwCreateWindow,{w,h,allocate_string(title,1),mon,sha})
 	
 end function
 
@@ -491,10 +485,7 @@ end function
 
 public procedure glfwSetWindowTitle(atom win,sequence title)
 
- atom str
- str = allocate_string(title)
- 
- c_proc(xglfwSetWindowTitle,{win,str})
+ c_proc(xglfwSetWindowTitle,{win,allocate_string(title,1)})
 	
 end procedure
 
@@ -562,25 +553,13 @@ end procedure
 
 public function glfwExtensionSupported(sequence ext)
 
- atom str,ret
- 
- str = allocate_string(ext)
- 
- ret = c_func(xglfwExtensionSupported,{str})
- 
- return ret
+ return c_func(xglfwExtensionSupported,{allocate_string(ext,1)})
 	
 end function
 
 public function glfwGetProcAddress(sequence name)
 
- atom str,ret
- 
- str = allocate_string(name)
- 
- ret = c_func(xglfwGetProcAddress,{str})
- 
- return ret
+ return c_func(xglfwGetProcAddress,{allocate_string(name,1)})
 	
 end function
 
@@ -839,16 +818,7 @@ end procedure
 
 public function glfwCreateCursor(atom image,integer x,integer y)
 
-	atom fn
-  
-  return c_func(xglfwCreateCursor,{fn = open(image,"rb"),x,y})
-  
-	if fn = -1 then
-		puts(1,"Could not load image!\n")
-		abort(0)
-		else
-			close(fn)
-	end if
+ return c_func(xglfwCreateCursor,{image,x,y})
 	
 end function
 
@@ -944,10 +914,7 @@ end function
 
 public procedure glfwSetClipboardString(atom win,sequence str)
 
- atom st
- st = allocate_string(str)
- 
- c_proc(xglfwSetClipboardString,{win,st})
+ c_proc(xglfwSetClipboardString,{win,allocate_string(str,1)})
 	
 end procedure
 
@@ -968,3 +935,4 @@ public procedure glfwSetTime(atom xtime)
  c_proc(xglfwSetTime,{xtime})
 	
 end procedure
+
