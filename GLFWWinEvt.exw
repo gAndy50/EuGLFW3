@@ -3,7 +3,7 @@ without warning
 include EuGLFW3.ew
 
 public constant GL_TRUE = 1,
-				GL_FALSE = 0
+		GL_FALSE = 0
 
 atom win
 
