@@ -23,3 +23,9 @@ offical website for more information.
 
 EuGLFW3 is hosted at Euphoria's website: http://www.rapideuphoria.com
 GLFW3 is hosted at http://www.glfw.org 
+
+Updates:
+
+5-8-15
+
+Fixed old code. Updated demos.
