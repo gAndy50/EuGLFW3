@@ -1,18 +1,19 @@
-without warning
-
-include std/dll.e
 include std/machine.e
+include std/dll.e
 
 atom gl = open_dll("glfw3.dll")
 
 if gl = -1 then
-	puts(1,"Could not load glfw3.dll!\n")
+	puts(1,"Could not open glfw3.dll!\n")
 	abort(0)
 end if
 
 public constant GLFW_VERSION_MAJOR = 3
-public constant GLFW_VERSION_MINOR = 1
-public constant GLFW_VERSION_REVISION = 1
+public constant GLFW_VERSION_MINOR = 2
+public constant GLFW_VERSION_REVIVISON = 0
+
+public constant GLFW_TRUE = 1
+public constant GLFW_FALSE = 0
 
 public constant GLFW_RELEASE = 0
 public constant GLFW_PRESS = 1
@@ -258,7 +259,6 @@ public constant GLFW_CONNECTED = 262145,
 				GLFW_DISCONNECTED = 252146
 				
 public constant GLFW_DONT_CARE = -1
-
 
 --Init functions
 public constant xglfwInit = define_c_func(gl,"glfwInit",{},C_INT),
@@ -935,4 +935,4 @@ public procedure glfwSetTime(atom xtime)
  c_proc(xglfwSetTime,{xtime})
 	
 end procedure
-
+­1.21
