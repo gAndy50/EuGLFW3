@@ -936,4 +936,4 @@ public procedure glfwSetTime(atom xtime)
  c_proc(xglfwSetTime,{xtime})
 	
 end procedure
-````Euphoria
+````
