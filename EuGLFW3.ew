@@ -10,7 +10,7 @@ end if
 
 public constant GLFW_VERSION_MAJOR = 3
 public constant GLFW_VERSION_MINOR = 2
-public constant GLFW_VERSION_REVIVISON = 0
+public constant GLFW_VERSION_REVIVISON = 1
 
 public constant GLFW_TRUE = 1
 public constant GLFW_FALSE = 0
@@ -935,3 +935,4 @@ public procedure glfwSetTime(atom xtime)
  c_proc(xglfwSetTime,{xtime})
 	
 end procedure
+­13.42
