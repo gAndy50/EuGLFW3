@@ -1,5 +1,5 @@
 Title: EuGLFw3
-Author: Andy Patterson
+Author: Andy P.
 Platform: Windows
 Binding: Euphoria Programming Language
 Binds GLFW3 version: 3.2.1
