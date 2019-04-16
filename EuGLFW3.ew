@@ -1,5 +1,6 @@
 include std/machine.e
 include std/dll.e
+include std/math.e
 
 atom gl = open_dll("glfw3.dll")
 
@@ -9,8 +10,8 @@ if gl = -1 then
 end if
 
 public constant GLFW_VERSION_MAJOR = 3
-public constant GLFW_VERSION_MINOR = 2
-public constant GLFW_VERSION_REVIVISON = 1
+public constant GLFW_VERSION_MINOR = 3
+public constant GLFW_VERSION_REVIVISON = 0
 
 public constant GLFW_TRUE = 1
 public constant GLFW_FALSE = 0
@@ -179,6 +180,45 @@ public constant GLFW_JOYSTICK_1 = 0,
 				GLFW_JOYSTICK_15 = 14,
 				GLFW_JOYSTICK_16 = 15,
 				GLFW_JOYSTICK_LAST = GLFW_JOYSTICK_16
+				
+public constant GLFW_GAMEPAD_BUTTON_A = 0,
+				GLFW_GAMEPAD_BUTTON_B = 1,
+				GLFW_GAMEPAD_BUTTON_X = 2,
+				GLFW_GAMEPAD_BUTTON_Y = 3,
+				GLFW_GAMEPAD_BUTTON_LEFT_BUMPER = 4,
+				GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER = 5,
+				GLFW_GAMEPAD_BUTTON_BACK = 6,
+				GLFW_GAMEPAD_BUTTON_START = 7,
+				GLFW_GAMEPAD_BUTTON_GUIDE = 8,
+				GLFW_GAMEPAD_BUTTON_LEFT_THUMB = 9,
+				GLFW_GAMEPAD_BUTTON_RIGHT_THUMB = 10,
+				GLFW_GAMEPAD_BUTTON_DPAD_UP = 11,
+				GLFW_GAMEPAD_BUTTON_DPAD_RIGHT = 12,
+				GLFW_GAMEPAD_BUTTON_DPAD_DOWN = 13,
+				GLFW_GAMEPAD_BUTTON_DPAD_LEFT = 14,
+				GLFW_GAMEPAD_BUTTON_LAST = GLFW_GAMEPAD_BUTTON_DPAD_LEFT,
+				GLFW_GAMEPAD_BUTTON_CROSS = GLFW_GAMEPAD_BUTTON_A,
+				GLFW_GAMEPAD_BUTTON_CIRCLE = GLFW_GAMEPAD_BUTTON_B,
+				GLFW_GAMEPAD_BUTTON_SQUARE = GLFW_GAMEPAD_BUTTON_X,
+				GLFW_GAMEPAD_BUTTON_TRIANGLE = GLFW_GAMEPAD_BUTTON_Y
+				
+public constant GLFW_HAT_CENTERED = 0,
+				GLFW_HAT_UP = 1,
+				GLFW_HAT_RIGHT = 2,
+				GLFW_HAT_DOWN = 4,
+				GLFW_HAT_LEFT = 8,
+				GLFW_HAT_RIGHT_UP = or_all({GLFW_HAT_RIGHT,GLFW_HAT_UP}),
+				GLFW_HAT_RIGHT_DOWN = or_all({GLFW_HAT_RIGHT,GLFW_HAT_DOWN}),
+				GLFW_HAT_LEFT_UP = or_all({GLFW_HAT_LEFT,GLFW_HAT_UP}),
+				GLFW_HAT_LEFT_DOWN = or_all({GLFW_HAT_LEFT,GLFW_HAT_DOWN})
+				
+public constant GLFW_GAMEPAD_AXIS_LEFT_X = 0,
+				GLFW_GAMEPAD_AXIS_LEFT_Y = 1,
+				GLFW_GAMEPAD_AXIS_RIGHT_X = 2,
+				GLFW_GAMEPAD_AXIS_RIGHT_Y = 3,
+				GLFW_GAMEPAD_AXIS_LEFT_TRIGGER = 4,
+				GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER = 5,
+				GLFW_GAMEPAD_AXIS_LAS = GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER
 				
 public constant GLFW_NOT_INITIALIZED = 65537,
 				GLFW_NO_CURRENT_CONTEXT = 65538,
@@ -525,6 +565,36 @@ public function glfwWindowShouldClose(atom win)
 	
 end function
 
+public constant xglfwGetWindowContentScale = define_c_proc(gl,"glfwGetWindowContentScale",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwGetMonitorContentScale = define_c_proc(gl,"glfwGetMonitorContentScale",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwSetWindowContentScaleCallback = define_c_func(gl,"glfwSetWindowContentScaleCallback",{C_POINTER,C_POINTER},C_POINTER)
+
+public procedure glfwGetWindowContentScale(atom win,atom x,atom y)
+
+ c_proc(xglfwGetWindowContentScale,{win,x,y})
+	
+end procedure
+
+public procedure glfwGetMonitorContentScale(atom win,atom x,atom y)
+
+ c_proc(xglfwGetMonitorContentScale,{win,x,y})
+	
+end procedure
+
+public function glfwSetWindowContentScaleCallback(atom win,atom cb)
+
+ return c_func(xglfwSetWindowContentScaleCallback,{win,cb})
+	
+end function
+
+public constant xglfwSetWindowAttrib = define_c_proc(gl,"glfwSetWindowAttrib",{C_POINTER,C_INT,C_INT})
+
+public procedure glfwSetWindowAttrib(atom win,atom att,integer val)
+
+ c_proc(xglfwSetWindowAttrib,{win,att,val})
+	
+end procedure
+
 --GLFW Context functions
 
 public constant xglfwMakeContextCurrent = define_c_proc(gl,"glfwMakeContextCurrent",{C_POINTER}),
@@ -575,7 +645,8 @@ public constant xglfwGetMonitors = define_c_func(gl,"glfwGetMonitors",{C_POINTER
 				xglfwGetVideoMode = define_c_func(gl,"glfwGetVideoMode",{C_POINTER},C_POINTER),
 				xglfwSetGamma = define_c_proc(gl,"glfwSetGamma",{C_POINTER,C_FLOAT}),
 				xglfwGetGammaRamp = define_c_func(gl,"glfwGetGammaRamp",{C_POINTER},C_POINTER),
-				xglfwSetGammaRamp = define_c_proc(gl,"glfwSetGammaRamp",{C_POINTER,C_POINTER})
+				xglfwSetGammaRamp = define_c_proc(gl,"glfwSetGammaRamp",{C_POINTER,C_POINTER}),
+				xglfwGetMonitorWorkarea = define_c_proc(gl,"glfwGetMonitorWorkarea",{C_POINTER,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
 				
 public function glfwGetGammaRamp(atom mon)
 
@@ -642,6 +713,12 @@ public function glfwSetMonitorCallback(atom cb)
  return c_func(xglfwSetMonitorCallback,{cb})
 	
 end function
+
+public procedure glfwGetMonitorWorkarea(atom mon,atom x,atom y,atom w,atom h)
+
+ c_proc(xglfwGetMonitorWorkarea,{mon,x,y,w,h})
+	
+end procedure
 
 --Native platform functions
 
@@ -778,7 +855,8 @@ public constant xglfwGetInputMode = define_c_func(gl,"glfwGetInputMode",{C_POINT
 				xglfwSetClipboardString = define_c_proc(gl,"glfwSetClipboardString",{C_POINTER,C_POINTER}),
 				xglfwGetClipboardString = define_c_func(gl,"glfwGetClipboardString",{C_POINTER},C_POINTER),
 				xglfwGetTime = define_c_func(gl,"glfwGetTime",{},C_DOUBLE),
-				xglfwSetTime = define_c_proc(gl,"glfwSetTime",{C_DOUBLE})
+				xglfwSetTime = define_c_proc(gl,"glfwSetTime",{C_DOUBLE}),
+				xglfwGetKeyScancode = define_c_func(gl,"glfwGetKeyScancode",{C_INT},C_INT)
 				
 public function glfwGetInputMode(atom win,integer mod)
 
@@ -935,4 +1013,112 @@ public procedure glfwSetTime(atom xtime)
  c_proc(xglfwSetTime,{xtime})
 	
 end procedure
-­13.42
+
+public function glfwGetKeyScancode(integer ke)
+
+ return c_func(xglfwGetKeyScancode,{ke})
+	
+end function
+
+--GLFW Gamepad Functions
+
+public constant xglfwJoystickIsGamepad = define_c_func(gl,"glfwJoystickIsGamepad",{C_INT},C_INT),
+				xglfwGetGamepadState = define_c_func(gl,"glfwGetGamepadState",{C_INT,C_POINTER},C_INT),
+				xglfwUpdateGamepadMappings = define_c_func(gl,"glfwUpdateGamepadMappings",{C_POINTER},C_INT),
+				xglfwGetGamepadName = define_c_func(gl,"glfwGetGamepadName",{C_INT},C_POINTER),
+				xglfwGetJoystickGUID = define_c_func(gl,"glfwGetJoystickGUID",{C_INT},C_POINTER)
+
+public function glfwJoystickIsGamepad(integer id)
+
+ return c_func(xglfwJoystickIsGamepad,{id})
+	
+end function
+
+public function glfwGetGamepadState(integer id,atom st)
+
+ return c_func(xglfwGetGamepadState,{id,st})
+	
+end function
+
+public function glfwUpdateGamepadMappings(sequence st)
+
+ atom str = allocate_string(st,1)
+ return c_func(xglfwUpdateGamepadMappings,{str})
+	
+end function
+
+public function glfwGetGamepadName(integer id)
+
+ return c_func(xglfwGetGamepadName,{id})
+	
+end function
+
+public function glfwGetJoystickGUID(integer id)
+
+ return c_func(xglfwGetJoystickGUID,{id})
+	
+end function
+
+public constant xglfwRawMouseMotionSupported = define_c_func(gl,"glfwRawMouseMotionSupported",{},C_INT)
+
+public function glfwRawMouseMotionSupported()
+
+ return c_func(xglfwRawMouseMotionSupported,{})
+	
+end function
+
+public constant xglfwGetJoystickHats = define_c_func(gl,"glfwGetJoystickHats",{C_INT,C_INT},C_POINTER)
+
+public function glfwGetJoystickHats(integer id,atom cnt)
+
+ return c_func(xglfwGetJoystickHats,{id,cnt})
+	
+end function
+
+public constant xglfwGetWindowOpacity = define_c_func(gl,"glfwGetWindowOpacity",{C_POINTER},C_FLOAT),
+				xglfwSetWindowOpacity = define_c_proc(gl,"glfwSetWindowOpacity",{C_POINTER,C_FLOAT})
+				
+public function glfwGetWindowOpacity(atom win)
+
+ return c_func(xglfwGetWindowOpacity,{win})
+	
+end function
+
+public procedure glfwSetWindowOpacity(atom win,atom op)
+
+ c_proc(xglfwSetWindowOpacity,{win,op})
+	
+end procedure
+
+public constant xglfwSetMonitorUserPointer = define_c_proc(gl,"glfwSetMonitorUserPointer",{C_POINTER,C_POINTER})
+
+public procedure glfwSetMonitorUserPointer(atom mon,atom ptr)
+
+ c_proc(xglfwSetMonitorUserPointer,{mon,ptr})
+	
+end procedure
+
+public constant xglfwGetMonitorUserPointer = define_c_func(gl,"glfwGetMonitorUserPointer",{C_POINTER},C_POINTER)
+
+public function glfwGetMonitorUserPointer(atom mon)
+
+ return c_func(xglfwGetMonitorUserPointer,{mon})
+	
+end function
+
+public constant xglfwSetJoystickUserPointer = define_c_proc(gl,"glfwSetJoystickUserPointer",{C_INT,C_POINTER})
+
+public procedure glfwSetJoystickUserPointer(integer id,atom ptr)
+
+ c_proc(xglfwSetJoystickUserPointer,{id,ptr})
+	
+end procedure
+
+public constant xglfwGetJoystickUserPointer = define_c_func(gl,"glfwGetJyostickUserPointer",{C_INT},C_POINTER)
+
+public function glfwGetJoystickUserPointer(atom id)
+
+ return c_func(xglfwGetJoystickUserPointer,{id})
+	
+end function
+­1121.23

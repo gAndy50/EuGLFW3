@@ -1,14 +1,14 @@
 Title: EuGLFw3
-Author: Andy P.
+Author: Andy P
 Platform: Windows
 Binding: Euphoria Programming Language
-Binds GLFW3 version: 3.2.1
+Binds GLFW3 version: 3.3.0
 Developed With: Euphoria 4.0.5
 Contact/Paypal: g_andy@live.com
 
 About:
 
-EuGLFW3 is a wrapper of GLFW3 for the Euphoria programming language. All functions have been 
+EuGLFW3 is a wrapper of GLFw3 for the Euphoria programming language. All functions have been 
 wrapped. EuGLFW3 is a free and easy to use wrapper with Euphoria. GLFw provides support for 
 window creation, multiple monitors, keyboards, mice and joysticks. EuGLFW3 is useful for multi-
 media applications. EuGLFW3 comes with a couple of examples programs to help you learn how to use
@@ -37,3 +37,7 @@ Updated for GLFW 3.2.0
 8-21-16
 
 Updated for GLFW 3.2.1
+
+4-16-19
+
+Updated for GLFW 3.3.0
