@@ -4,7 +4,7 @@ include std/math.e
 
 atom gl = open_dll("glfw3.dll")
 
-if gl = -1 then
+if gl < 1 then
 	puts(1,"Could not open glfw3.dll!\n")
 	abort(0)
 end if
@@ -301,11 +301,11 @@ public constant GLFW_CONNECTED = 262145,
 public constant GLFW_DONT_CARE = -1
 
 --Init functions
-public constant xglfwInit = define_c_func(gl,"glfwInit",{},C_INT),
-				xglfwTerminate = define_c_proc(gl,"glfwTerminate",{}),
-				xglfwGetVersion = define_c_proc(gl,"glfwGetVersion",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwGetVersionString = define_c_func(gl,"glfwGetVersionString",{},C_POINTER),
-				xglfwSetErrorCallback = define_c_func(gl,"glfwSetErrorCallback",{C_POINTER},C_POINTER)
+public constant xglfwInit = define_c_func(gl,"+glfwInit",{},C_INT),
+				xglfwTerminate = define_c_proc(gl,"+glfwTerminate",{}),
+				xglfwGetVersion = define_c_proc(gl,"+glfwGetVersion",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwGetVersionString = define_c_func(gl,"+glfwGetVersionString",{},C_POINTER),
+				xglfwSetErrorCallback = define_c_func(gl,"+glfwSetErrorCallback",{C_POINTER},C_POINTER)
 				
 public function glfwInit()
 
@@ -339,38 +339,38 @@ end function
 
 --Window creation functions
 
-public constant xglfwCreateWindow = define_c_func(gl,"glfwCreateWindow",{C_INT,C_INT,C_POINTER,C_POINTER,C_POINTER},C_POINTER),
-				xglfwDefaultWindowHints = define_c_proc(gl,"glfwDefaultWindowHints",{}),
-				xglfwWindowHint = define_c_proc(gl,"glfwWindowHint",{C_INT,C_INT}),
-				xglfwDestroyWindow = define_c_proc(gl,"glfwDestroyWindow",{C_POINTER}),
-				xglfwWindowShouldClose = define_c_func(gl,"glfwWindowShouldClose",{C_POINTER},C_INT),
-				xglfwSetWindowShouldClose = define_c_proc(gl,"glfwSetWindowShouldClose",{C_POINTER,C_INT}),
-				xglfwSetWindowTitle = define_c_proc(gl,"glfwSetWindowTitle",{C_POINTER,C_POINTER}),
-				xglfwGetWindowPos = define_c_proc(gl,"glfwGetWindowPos",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwSetWindowPos = define_c_proc(gl,"glfwSetWindowPos",{C_POINTER,C_INT,C_INT}),
-				xglfwGetWindowSize = define_c_proc(gl,"glfwGetWindowSize",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwSetWindowSize = define_c_proc(gl,"glfwSetWindowSize",{C_POINTER,C_INT,C_INT}),
-				xglfwGetFramebufferSize = define_c_proc(gl,"glfwGetFrameBufferSize",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwGetWindowFrameSize = define_c_proc(gl,"glfwGetWindowFrameSize",{C_POINTER,C_POINTER,C_POINTER,C_POINTER,C_POINTER}),
-				xglfwIconifyWindow = define_c_proc(gl,"glfwIconifyWindow",{C_POINTER}),
-				xglfwRestoreWindow = define_c_proc(gl,"glfwRestoreWindow",{C_POINTER}),
-				xglfwShowWindow = define_c_proc(gl,"glfwShowWindow",{C_POINTER}),
-				xglfwHideWindow = define_c_proc(gl,"glfwHideWindow",{C_POINTER}),
-				xglfwGetWindowMonitor = define_c_func(gl,"glfwGetWindowMonitor",{C_POINTER},C_POINTER),
-				xglfwGetWindowAttrib = define_c_func(gl,"glfwGetWindowAttrib",{C_POINTER,C_INT},C_INT),
-				xglfwSetWindowUserPointer = define_c_proc(gl,"glfwSetWindowUserPointer",{C_POINTER,C_POINTER}),
-				xglfwGetWindowUserPointer = define_c_proc(gl,"glfwGetWindowUserPointer",{C_POINTER}),
-				xglfwSetWindowPosCallback = define_c_func(gl,"glfwSetWindowPosCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetWindowSizeCallback = define_c_func(gl,"glfwSetWindowSizeCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetWindowCloseCallback = define_c_func(gl,"glfwSetWindowCloseCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetWindowRefreshCallback = define_c_func(gl,"glfwSetWindowRefreshCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetWindowFocusCallback = define_c_func(gl,"glfwSetWindowFocusCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetWindowIconifyCallback = define_c_func(gl,"glfwSetWindowIconifyCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetFramebufferSizeCallback = define_c_func(gl,"glfwSetFramebufferSizeCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwPollEvents = define_c_proc(gl,"glfwPollEvents",{}),
-				xglfwWaitEvents = define_c_proc(gl,"glfwWaitEvents",{}),
-				xglfwPostEmptyEvent = define_c_proc(gl,"glfwPostEmptyEvent",{}),
-				xglfwSwapBuffers = define_c_proc(gl,"glfwSwapBuffers",{C_POINTER})
+public constant xglfwCreateWindow = define_c_func(gl,"+glfwCreateWindow",{C_INT,C_INT,C_POINTER,C_POINTER,C_POINTER},C_POINTER),
+				xglfwDefaultWindowHints = define_c_proc(gl,"+glfwDefaultWindowHints",{}),
+				xglfwWindowHint = define_c_proc(gl,"+glfwWindowHint",{C_INT,C_INT}),
+				xglfwDestroyWindow = define_c_proc(gl,"+glfwDestroyWindow",{C_POINTER}),
+				xglfwWindowShouldClose = define_c_func(gl,"+glfwWindowShouldClose",{C_POINTER},C_INT),
+				xglfwSetWindowShouldClose = define_c_proc(gl,"+glfwSetWindowShouldClose",{C_POINTER,C_INT}),
+				xglfwSetWindowTitle = define_c_proc(gl,"+glfwSetWindowTitle",{C_POINTER,C_POINTER}),
+				xglfwGetWindowPos = define_c_proc(gl,"+glfwGetWindowPos",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwSetWindowPos = define_c_proc(gl,"+glfwSetWindowPos",{C_POINTER,C_INT,C_INT}),
+				xglfwGetWindowSize = define_c_proc(gl,"+glfwGetWindowSize",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwSetWindowSize = define_c_proc(gl,"+glfwSetWindowSize",{C_POINTER,C_INT,C_INT}),
+				xglfwGetFramebufferSize = define_c_proc(gl,"+glfwGetFrameBufferSize",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwGetWindowFrameSize = define_c_proc(gl,"+glfwGetWindowFrameSize",{C_POINTER,C_POINTER,C_POINTER,C_POINTER,C_POINTER}),
+				xglfwIconifyWindow = define_c_proc(gl,"+glfwIconifyWindow",{C_POINTER}),
+				xglfwRestoreWindow = define_c_proc(gl,"+glfwRestoreWindow",{C_POINTER}),
+				xglfwShowWindow = define_c_proc(gl,"+glfwShowWindow",{C_POINTER}),
+				xglfwHideWindow = define_c_proc(gl,"+glfwHideWindow",{C_POINTER}),
+				xglfwGetWindowMonitor = define_c_func(gl,"+glfwGetWindowMonitor",{C_POINTER},C_POINTER),
+				xglfwGetWindowAttrib = define_c_func(gl,"+glfwGetWindowAttrib",{C_POINTER,C_INT},C_INT),
+				xglfwSetWindowUserPointer = define_c_proc(gl,"+glfwSetWindowUserPointer",{C_POINTER,C_POINTER}),
+				xglfwGetWindowUserPointer = define_c_proc(gl,"+glfwGetWindowUserPointer",{C_POINTER}),
+				xglfwSetWindowPosCallback = define_c_func(gl,"+glfwSetWindowPosCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetWindowSizeCallback = define_c_func(gl,"+glfwSetWindowSizeCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetWindowCloseCallback = define_c_func(gl,"+glfwSetWindowCloseCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetWindowRefreshCallback = define_c_func(gl,"+glfwSetWindowRefreshCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetWindowFocusCallback = define_c_func(gl,"+glfwSetWindowFocusCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetWindowIconifyCallback = define_c_func(gl,"+glfwSetWindowIconifyCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetFramebufferSizeCallback = define_c_func(gl,"+glfwSetFramebufferSizeCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwPollEvents = define_c_proc(gl,"+glfwPollEvents",{}),
+				xglfwWaitEvents = define_c_proc(gl,"+glfwWaitEvents",{}),
+				xglfwPostEmptyEvent = define_c_proc(gl,"+glfwPostEmptyEvent",{}),
+				xglfwSwapBuffers = define_c_proc(gl,"+glfwSwapBuffers",{C_POINTER})
 				
 
 public function glfwCreateWindow(integer w,integer h,sequence title,atom mon,atom sha)
@@ -565,9 +565,9 @@ public function glfwWindowShouldClose(atom win)
 	
 end function
 
-public constant xglfwGetWindowContentScale = define_c_proc(gl,"glfwGetWindowContentScale",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwGetMonitorContentScale = define_c_proc(gl,"glfwGetMonitorContentScale",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwSetWindowContentScaleCallback = define_c_func(gl,"glfwSetWindowContentScaleCallback",{C_POINTER,C_POINTER},C_POINTER)
+public constant xglfwGetWindowContentScale = define_c_proc(gl,"+glfwGetWindowContentScale",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwGetMonitorContentScale = define_c_proc(gl,"+glfwGetMonitorContentScale",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwSetWindowContentScaleCallback = define_c_func(gl,"+glfwSetWindowContentScaleCallback",{C_POINTER,C_POINTER},C_POINTER)
 
 public procedure glfwGetWindowContentScale(atom win,atom x,atom y)
 
@@ -587,7 +587,7 @@ public function glfwSetWindowContentScaleCallback(atom win,atom cb)
 	
 end function
 
-public constant xglfwSetWindowAttrib = define_c_proc(gl,"glfwSetWindowAttrib",{C_POINTER,C_INT,C_INT})
+public constant xglfwSetWindowAttrib = define_c_proc(gl,"+glfwSetWindowAttrib",{C_POINTER,C_INT,C_INT})
 
 public procedure glfwSetWindowAttrib(atom win,atom att,integer val)
 
@@ -597,11 +597,11 @@ end procedure
 
 --GLFW Context functions
 
-public constant xglfwMakeContextCurrent = define_c_proc(gl,"glfwMakeContextCurrent",{C_POINTER}),
-				xglfwGetCurrentContext = define_c_func(gl,"glfwGetCurrentContext",{},C_POINTER),
-				xglfwSwapInterval = define_c_proc(gl,"glfwSwapInterval",{C_INT}),
-				xglfwExtensionSupported = define_c_func(gl,"glfwExtensionSupported",{C_POINTER},C_INT),
-				xglfwGetProcAddress = define_c_func(gl,"glfwGetProcAddress",{C_POINTER},C_POINTER)
+public constant xglfwMakeContextCurrent = define_c_proc(gl,"+glfwMakeContextCurrent",{C_POINTER}),
+				xglfwGetCurrentContext = define_c_func(gl,"+glfwGetCurrentContext",{},C_POINTER),
+				xglfwSwapInterval = define_c_proc(gl,"+glfwSwapInterval",{C_INT}),
+				xglfwExtensionSupported = define_c_func(gl,"+glfwExtensionSupported",{C_POINTER},C_INT),
+				xglfwGetProcAddress = define_c_func(gl,"+glfwGetProcAddress",{C_POINTER},C_POINTER)
 
 public procedure glfwMakeContextCurrent(atom win)
 
@@ -635,18 +635,18 @@ end function
 
 --Monitor functions
 
-public constant xglfwGetMonitors = define_c_func(gl,"glfwGetMonitors",{C_POINTER},C_POINTER),
-				xglfwGetPrimaryMonitor = define_c_func(gl,"glfwGetPrimaryMonitor",{},C_POINTER),
-				xglfwGetMonitorPos = define_c_proc(gl,"glfwGetMonitorPos",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwGetMonitorPhysicalSize = define_c_proc(gl,"glfwGetMonitorPhysicalSize",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwGetMonitorName = define_c_func(gl,"glfwGetMonitorName",{C_POINTER},C_POINTER),
-				xglfwSetMonitorCallback = define_c_func(gl,"glfwSetMonitorCallback",{C_POINTER},C_POINTER),
-				xglfwGetVideoModes = define_c_func(gl,"glfwGetVideoModes",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwGetVideoMode = define_c_func(gl,"glfwGetVideoMode",{C_POINTER},C_POINTER),
-				xglfwSetGamma = define_c_proc(gl,"glfwSetGamma",{C_POINTER,C_FLOAT}),
-				xglfwGetGammaRamp = define_c_func(gl,"glfwGetGammaRamp",{C_POINTER},C_POINTER),
-				xglfwSetGammaRamp = define_c_proc(gl,"glfwSetGammaRamp",{C_POINTER,C_POINTER}),
-				xglfwGetMonitorWorkarea = define_c_proc(gl,"glfwGetMonitorWorkarea",{C_POINTER,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
+public constant xglfwGetMonitors = define_c_func(gl,"+glfwGetMonitors",{C_POINTER},C_POINTER),
+				xglfwGetPrimaryMonitor = define_c_func(gl,"+glfwGetPrimaryMonitor",{},C_POINTER),
+				xglfwGetMonitorPos = define_c_proc(gl,"+glfwGetMonitorPos",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwGetMonitorPhysicalSize = define_c_proc(gl,"+glfwGetMonitorPhysicalSize",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwGetMonitorName = define_c_func(gl,"+glfwGetMonitorName",{C_POINTER},C_POINTER),
+				xglfwSetMonitorCallback = define_c_func(gl,"+glfwSetMonitorCallback",{C_POINTER},C_POINTER),
+				xglfwGetVideoModes = define_c_func(gl,"+glfwGetVideoModes",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwGetVideoMode = define_c_func(gl,"+glfwGetVideoMode",{C_POINTER},C_POINTER),
+				xglfwSetGamma = define_c_proc(gl,"+glfwSetGamma",{C_POINTER,C_FLOAT}),
+				xglfwGetGammaRamp = define_c_func(gl,"+glfwGetGammaRamp",{C_POINTER},C_POINTER),
+				xglfwSetGammaRamp = define_c_proc(gl,"+glfwSetGammaRamp",{C_POINTER,C_POINTER}),
+				xglfwGetMonitorWorkarea = define_c_proc(gl,"+glfwGetMonitorWorkarea",{C_POINTER,C_POINTER,C_POINTER,C_POINTER,C_POINTER})
 				
 public function glfwGetGammaRamp(atom mon)
 
@@ -722,21 +722,21 @@ end procedure
 
 --Native platform functions
 
-public constant xglfwGetWin32Adapter = define_c_func(gl,"glfwGetWin32Adapter",{C_POINTER},C_POINTER),
-				xglfwGetWin32Monitor = define_c_func(gl,"glfwGetWin32Monitor",{C_POINTER},C_POINTER),
-				xglfwGetWin32Window = define_c_func(gl,"glfwGetWin32Window",{C_POINTER},C_POINTER),
-				xglfwGetWGLContext = define_c_func(gl,"glfwGetWGLContext",{C_POINTER},C_POINTER),
-				xglfwGetCocoaMonitor = define_c_func(gl,"glfwGetCocoaMonitor",{C_POINTER},C_POINTER),
-				xglfwGetCocoaWindow = define_c_func(gl,"glfwGetCocoaWindow",{C_POINTER},C_POINTER),
-				xglfwGetNSGLContext = define_c_func(gl,"glfwGetNSGLContext",{C_POINTER},C_POINTER),
-				xglfwGetX11Display = define_c_func(gl,"glfwGetX11Display",{},C_POINTER),
-				xglfwGetX11Monitor = define_c_func(gl,"glfwGetX11Monitor",{C_POINTER},C_POINTER),
-				xglfwGetX11Adapter = define_c_func(gl,"glfwGetX11Adapter",{C_POINTER},C_POINTER),
-				xglfwGetX11Window = define_c_func(gl,"glfwGetX11Window",{C_POINTER},C_POINTER),
-				xglfwGetGLXContext = define_c_func(gl,"glfwGetGLXContext",{C_POINTER},C_POINTER),
-				xglfwGetEGLDisplay = define_c_func(gl,"glfwGetEGLDisplay",{},C_POINTER),
-				xglfwGetEGLContext = define_c_func(gl,"glfwGetEGLContext",{C_POINTER},C_POINTER),
-				xglfwGetEGLSurface = define_c_func(gl,"glfwGetEGLSurface",{C_POINTER},C_POINTER)
+public constant xglfwGetWin32Adapter = define_c_func(gl,"+glfwGetWin32Adapter",{C_POINTER},C_POINTER),
+				xglfwGetWin32Monitor = define_c_func(gl,"+glfwGetWin32Monitor",{C_POINTER},C_POINTER),
+				xglfwGetWin32Window = define_c_func(gl,"+glfwGetWin32Window",{C_POINTER},C_POINTER),
+				xglfwGetWGLContext = define_c_func(gl,"+glfwGetWGLContext",{C_POINTER},C_POINTER),
+				xglfwGetCocoaMonitor = define_c_func(gl,"+glfwGetCocoaMonitor",{C_POINTER},C_POINTER),
+				xglfwGetCocoaWindow = define_c_func(gl,"+glfwGetCocoaWindow",{C_POINTER},C_POINTER),
+				xglfwGetNSGLContext = define_c_func(gl,"+glfwGetNSGLContext",{C_POINTER},C_POINTER),
+				xglfwGetX11Display = define_c_func(gl,"+glfwGetX11Display",{},C_POINTER),
+				xglfwGetX11Monitor = define_c_func(gl,"+glfwGetX11Monitor",{C_POINTER},C_POINTER),
+				xglfwGetX11Adapter = define_c_func(gl,"+glfwGetX11Adapter",{C_POINTER},C_POINTER),
+				xglfwGetX11Window = define_c_func(gl,"+glfwGetX11Window",{C_POINTER},C_POINTER),
+				xglfwGetGLXContext = define_c_func(gl,"+glfwGetGLXContext",{C_POINTER},C_POINTER),
+				xglfwGetEGLDisplay = define_c_func(gl,"+glfwGetEGLDisplay",{},C_POINTER),
+				xglfwGetEGLContext = define_c_func(gl,"+glfwGetEGLContext",{C_POINTER},C_POINTER),
+				xglfwGetEGLSurface = define_c_func(gl,"+glfwGetEGLSurface",{C_POINTER},C_POINTER)
 				
 public function glfwGetWin32Adapter(atom mon)
 
@@ -830,33 +830,33 @@ end function
 
 --GLFW input functions
 
-public constant xglfwGetInputMode = define_c_func(gl,"glfwGetInputMode",{C_POINTER,C_INT},C_INT),
-				xglfwSetInputMode = define_c_proc(gl,"glfwSetInputMode",{C_POINTER,C_INT,C_INT}),
-				xglfwGetKey = define_c_func(gl,"glfwGetKey",{C_POINTER,C_INT},C_INT),
-				xglfwGetMouseButton = define_c_func(gl,"glfwGetMouseButton",{C_POINTER,C_INT},C_INT),
-				xglfwGetCursorPos = define_c_proc(gl,"glfwGetCursorPos",{C_POINTER,C_POINTER,C_POINTER}),
-				xglfwSetCursorPos = define_c_proc(gl,"glfwSetCursorPos",{C_POINTER,C_DOUBLE,C_DOUBLE}),
-				xglfwCreateCursor = define_c_func(gl,"glfwCreateCursor",{C_POINTER,C_INT,C_INT},C_POINTER),
-				xglfwCreateStandardCursor = define_c_func(gl,"glfwCreateStandardCursor",{C_INT},C_POINTER),
-				xglfwDestroyCursor = define_c_proc(gl,"glfwDestroyCursor",{C_POINTER}),
-				xglfwSetCursor = define_c_proc(gl,"glfwSetCursor",{C_POINTER,C_POINTER}),
-				xglfwSetKeyCallback = define_c_func(gl,"glfwSetKeyCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetCharCallback = define_c_func(gl,"glfwSetCharCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetCharModsCallback = define_c_func(gl,"glfwSetCharModsCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetMouseButtonCallback = define_c_func(gl,"glfwSetMouseButtonCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetCursorPosCallback = define_c_func(gl,"glfwSetCursorPosCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetCursorEnterCallback = define_c_func(gl,"glfwSetCursorEnterCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetScrollCallback = define_c_func(gl,"glfwSetScrollCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwSetDropCallback = define_c_func(gl,"glfwSetDropCallback",{C_POINTER,C_POINTER},C_POINTER),
-				xglfwJoystickPresent = define_c_func(gl,"glfwJoystickPresent",{C_INT},C_INT),
-				xglfwGetJoystickAxes = define_c_func(gl,"glfwGetJoystickAxes",{C_INT,C_POINTER},C_POINTER),
-				xglfwGetJoystickButtons = define_c_func(gl,"glfwGetJoystickButtons",{C_INT,C_POINTER},C_POINTER),
-				xglfwGetJoystickName = define_c_func(gl,"glfwGetJoystickName",{C_INT},C_POINTER),
-				xglfwSetClipboardString = define_c_proc(gl,"glfwSetClipboardString",{C_POINTER,C_POINTER}),
-				xglfwGetClipboardString = define_c_func(gl,"glfwGetClipboardString",{C_POINTER},C_POINTER),
-				xglfwGetTime = define_c_func(gl,"glfwGetTime",{},C_DOUBLE),
-				xglfwSetTime = define_c_proc(gl,"glfwSetTime",{C_DOUBLE}),
-				xglfwGetKeyScancode = define_c_func(gl,"glfwGetKeyScancode",{C_INT},C_INT)
+public constant xglfwGetInputMode = define_c_func(gl,"+glfwGetInputMode",{C_POINTER,C_INT},C_INT),
+				xglfwSetInputMode = define_c_proc(gl,"+glfwSetInputMode",{C_POINTER,C_INT,C_INT}),
+				xglfwGetKey = define_c_func(gl,"+glfwGetKey",{C_POINTER,C_INT},C_INT),
+				xglfwGetMouseButton = define_c_func(gl,"+glfwGetMouseButton",{C_POINTER,C_INT},C_INT),
+				xglfwGetCursorPos = define_c_proc(gl,"+glfwGetCursorPos",{C_POINTER,C_POINTER,C_POINTER}),
+				xglfwSetCursorPos = define_c_proc(gl,"+glfwSetCursorPos",{C_POINTER,C_DOUBLE,C_DOUBLE}),
+				xglfwCreateCursor = define_c_func(gl,"+glfwCreateCursor",{C_POINTER,C_INT,C_INT},C_POINTER),
+				xglfwCreateStandardCursor = define_c_func(gl,"+glfwCreateStandardCursor",{C_INT},C_POINTER),
+				xglfwDestroyCursor = define_c_proc(gl,"+glfwDestroyCursor",{C_POINTER}),
+				xglfwSetCursor = define_c_proc(gl,"+glfwSetCursor",{C_POINTER,C_POINTER}),
+				xglfwSetKeyCallback = define_c_func(gl,"+glfwSetKeyCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetCharCallback = define_c_func(gl,"+glfwSetCharCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetCharModsCallback = define_c_func(gl,"+glfwSetCharModsCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetMouseButtonCallback = define_c_func(gl,"+glfwSetMouseButtonCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetCursorPosCallback = define_c_func(gl,"+glfwSetCursorPosCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetCursorEnterCallback = define_c_func(gl,"+glfwSetCursorEnterCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetScrollCallback = define_c_func(gl,"+glfwSetScrollCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwSetDropCallback = define_c_func(gl,"+glfwSetDropCallback",{C_POINTER,C_POINTER},C_POINTER),
+				xglfwJoystickPresent = define_c_func(gl,"+glfwJoystickPresent",{C_INT},C_INT),
+				xglfwGetJoystickAxes = define_c_func(gl,"+glfwGetJoystickAxes",{C_INT,C_POINTER},C_POINTER),
+				xglfwGetJoystickButtons = define_c_func(gl,"+glfwGetJoystickButtons",{C_INT,C_POINTER},C_POINTER),
+				xglfwGetJoystickName = define_c_func(gl,"+glfwGetJoystickName",{C_INT},C_POINTER),
+				xglfwSetClipboardString = define_c_proc(gl,"+glfwSetClipboardString",{C_POINTER,C_POINTER}),
+				xglfwGetClipboardString = define_c_func(gl,"+glfwGetClipboardString",{C_POINTER},C_POINTER),
+				xglfwGetTime = define_c_func(gl,"+glfwGetTime",{},C_DOUBLE),
+				xglfwSetTime = define_c_proc(gl,"+glfwSetTime",{C_DOUBLE}),
+				xglfwGetKeyScancode = define_c_func(gl,"+glfwGetKeyScancode",{C_INT},C_INT)
 				
 public function glfwGetInputMode(atom win,integer mod)
 
@@ -1022,11 +1022,11 @@ end function
 
 --GLFW Gamepad Functions
 
-public constant xglfwJoystickIsGamepad = define_c_func(gl,"glfwJoystickIsGamepad",{C_INT},C_INT),
-				xglfwGetGamepadState = define_c_func(gl,"glfwGetGamepadState",{C_INT,C_POINTER},C_INT),
-				xglfwUpdateGamepadMappings = define_c_func(gl,"glfwUpdateGamepadMappings",{C_POINTER},C_INT),
-				xglfwGetGamepadName = define_c_func(gl,"glfwGetGamepadName",{C_INT},C_POINTER),
-				xglfwGetJoystickGUID = define_c_func(gl,"glfwGetJoystickGUID",{C_INT},C_POINTER)
+public constant xglfwJoystickIsGamepad = define_c_func(gl,"+glfwJoystickIsGamepad",{C_INT},C_INT),
+				xglfwGetGamepadState = define_c_func(gl,"+glfwGetGamepadState",{C_INT,C_POINTER},C_INT),
+				xglfwUpdateGamepadMappings = define_c_func(gl,"+glfwUpdateGamepadMappings",{C_POINTER},C_INT),
+				xglfwGetGamepadName = define_c_func(gl,"+glfwGetGamepadName",{C_INT},C_POINTER),
+				xglfwGetJoystickGUID = define_c_func(gl,"+glfwGetJoystickGUID",{C_INT},C_POINTER)
 
 public function glfwJoystickIsGamepad(integer id)
 
@@ -1059,7 +1059,7 @@ public function glfwGetJoystickGUID(integer id)
 	
 end function
 
-public constant xglfwRawMouseMotionSupported = define_c_func(gl,"glfwRawMouseMotionSupported",{},C_INT)
+public constant xglfwRawMouseMotionSupported = define_c_func(gl,"+glfwRawMouseMotionSupported",{},C_INT)
 
 public function glfwRawMouseMotionSupported()
 
@@ -1067,7 +1067,7 @@ public function glfwRawMouseMotionSupported()
 	
 end function
 
-public constant xglfwGetJoystickHats = define_c_func(gl,"glfwGetJoystickHats",{C_INT,C_INT},C_POINTER)
+public constant xglfwGetJoystickHats = define_c_func(gl,"+glfwGetJoystickHats",{C_INT,C_INT},C_POINTER)
 
 public function glfwGetJoystickHats(integer id,atom cnt)
 
@@ -1075,8 +1075,8 @@ public function glfwGetJoystickHats(integer id,atom cnt)
 	
 end function
 
-public constant xglfwGetWindowOpacity = define_c_func(gl,"glfwGetWindowOpacity",{C_POINTER},C_FLOAT),
-				xglfwSetWindowOpacity = define_c_proc(gl,"glfwSetWindowOpacity",{C_POINTER,C_FLOAT})
+public constant xglfwGetWindowOpacity = define_c_func(gl,"+glfwGetWindowOpacity",{C_POINTER},C_FLOAT),
+				xglfwSetWindowOpacity = define_c_proc(gl,"+glfwSetWindowOpacity",{C_POINTER,C_FLOAT})
 				
 public function glfwGetWindowOpacity(atom win)
 
@@ -1090,7 +1090,7 @@ public procedure glfwSetWindowOpacity(atom win,atom op)
 	
 end procedure
 
-public constant xglfwSetMonitorUserPointer = define_c_proc(gl,"glfwSetMonitorUserPointer",{C_POINTER,C_POINTER})
+public constant xglfwSetMonitorUserPointer = define_c_proc(gl,"+glfwSetMonitorUserPointer",{C_POINTER,C_POINTER})
 
 public procedure glfwSetMonitorUserPointer(atom mon,atom ptr)
 
@@ -1098,7 +1098,7 @@ public procedure glfwSetMonitorUserPointer(atom mon,atom ptr)
 	
 end procedure
 
-public constant xglfwGetMonitorUserPointer = define_c_func(gl,"glfwGetMonitorUserPointer",{C_POINTER},C_POINTER)
+public constant xglfwGetMonitorUserPointer = define_c_func(gl,"+glfwGetMonitorUserPointer",{C_POINTER},C_POINTER)
 
 public function glfwGetMonitorUserPointer(atom mon)
 
@@ -1106,7 +1106,7 @@ public function glfwGetMonitorUserPointer(atom mon)
 	
 end function
 
-public constant xglfwSetJoystickUserPointer = define_c_proc(gl,"glfwSetJoystickUserPointer",{C_INT,C_POINTER})
+public constant xglfwSetJoystickUserPointer = define_c_proc(gl,"+glfwSetJoystickUserPointer",{C_INT,C_POINTER})
 
 public procedure glfwSetJoystickUserPointer(integer id,atom ptr)
 
@@ -1114,11 +1114,11 @@ public procedure glfwSetJoystickUserPointer(integer id,atom ptr)
 	
 end procedure
 
-public constant xglfwGetJoystickUserPointer = define_c_func(gl,"glfwGetJyostickUserPointer",{C_INT},C_POINTER)
+public constant xglfwGetJoystickUserPointer = define_c_func(gl,"+glfwGetJyostickUserPointer",{C_INT},C_POINTER)
 
 public function glfwGetJoystickUserPointer(atom id)
 
  return c_func(xglfwGetJoystickUserPointer,{id})
 	
 end function
-­1121.23
+­1111.34
