@@ -2,12 +2,13 @@ include std/machine.e
 include std/dll.e
 include std/math.e
 
-atom gl = open_dll("glfw3.dll")
+atom gl
 
-if gl < 1 then
-	puts(1,"Could not open glfw3.dll!\n")
-	abort(0)
-end if
+ifdef WIN32 then
+	gl = open_dll("glfw3.dll")
+	elsifdef LINUX or FREEBSD then
+	gl = open_dll("glfw3.so")
+end ifdef
 
 public constant GLFW_VERSION_MAJOR = 3
 public constant GLFW_VERSION_MINOR = 3
@@ -1121,4 +1122,4 @@ public function glfwGetJoystickUserPointer(atom id)
  return c_func(xglfwGetJoystickUserPointer,{id})
 	
 end function
-­1111.34
+­5.7
