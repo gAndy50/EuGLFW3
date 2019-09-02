@@ -149,7 +149,9 @@ public constant GLFW_KEY_ESCAPE = 256,
 public constant GLFW_MOD_SHIFT = 1,
 				GLFW_MOD_CONTROL = 2,
 				GLFW_MOD_ALT = 4,
-				GLFW_MOD_SUPER = 8
+				GLFW_MOD_SUPER = 8,
+				GLFW_MOD_CAPS_LOCK = 16,
+				GLFW_MOD_NUM_LOCK = 32
 				
 public constant GLFW_MOUSE_BUTTON_1 = 0,
 				GLFW_MOUSE_BUTTON_2 = 1,
@@ -1122,4 +1124,4 @@ public function glfwGetJoystickUserPointer(atom id)
  return c_func(xglfwGetJoystickUserPointer,{id})
 	
 end function
-­5.7
+­154.26
