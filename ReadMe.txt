@@ -4,7 +4,7 @@ Platform: Windows
 Binding: Euphoria Programming Language
 Binds GLFW3 version: 3.3.1
 Developed With: Euphoria 4.1.0 Beta 2
-Contact/Paypal: g_andy <at> live.com
+Contact/Paypal: paypal.me/IcyViking
 
 About:
 
