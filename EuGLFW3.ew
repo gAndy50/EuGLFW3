@@ -12,7 +12,7 @@ end ifdef
 
 public constant GLFW_VERSION_MAJOR = 3
 public constant GLFW_VERSION_MINOR = 3
-public constant GLFW_VERSION_REVIVISON = 0
+public constant GLFW_VERSION_REVIVISON = 1
 
 public constant GLFW_TRUE = 1
 public constant GLFW_FALSE = 0
@@ -250,7 +250,7 @@ public constant GLFW_RED_BITS = 135169,
 				GLFW_ACCUM_RED_BITS = 135175,
 				GLFW_ACCUM_GREEN_BITS = 135176,
 				GLFW_ACCUM_BLUE_BITS = 135177,
-				GLFW_ACCUM_ALPHA_BITS = 13578,
+				GLFW_ACCUM_ALPHA_BITS = 135178,
 				GLFW_AUX_BUFFERS = 135179,
 				GLFW_STEREO = 135180,
 				GLFW_SAMPLES = 135181,
@@ -1124,4 +1124,4 @@ public function glfwGetJoystickUserPointer(atom id)
  return c_func(xglfwGetJoystickUserPointer,{id})
 	
 end function
-­206.56
+­15.42
