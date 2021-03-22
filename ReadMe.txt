@@ -21,7 +21,6 @@ responsible for any reason while using EuGLFW3. EuGLFW3 is provided in the event
 helpful. EuGLFW3 is provided as-is. GLFW3 is under the license zlib/libpng. Plese refer GLFW3
 offical website for more information.
 
-EuGLFW3 is hosted at Euphoria's website: http://www.rapideuphoria.com
 GLFW3 is hosted at http://www.glfw.org 
 
 Updates:
