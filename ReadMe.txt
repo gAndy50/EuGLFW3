@@ -2,7 +2,7 @@ Title: EuGLFw3
 Author: Andy P.
 Platform: Windows
 Binding: Euphoria Programming Language
-Binds GLFW3 version: 3.3.2
+Binds GLFW3 version: 3.3.4
 Developed With: Euphoria 4.1.0 Beta 2
 Contact/Paypal: paypal.me/IcyViking
 
@@ -48,3 +48,7 @@ Updated for GLFW 3.3.1
 12-17-20
 
 Updated for GLFW 3.3.2
+
+4-15-21
+
+Updated for GLFW 3.3.4
