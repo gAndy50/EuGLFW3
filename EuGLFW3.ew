@@ -12,7 +12,7 @@ end ifdef
 
 public constant GLFW_VERSION_MAJOR = 3
 public constant GLFW_VERSION_MINOR = 3
-public constant GLFW_VERSION_REVIVISON = 2
+public constant GLFW_VERSION_REVIVISON = 4
 
 public constant GLFW_TRUE = 1
 public constant GLFW_FALSE = 0
