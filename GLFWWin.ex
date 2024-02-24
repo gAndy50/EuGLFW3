@@ -1,6 +1,6 @@
 without warning
 
-include EuGLFW3.ew
+include glfw3.e
 
 atom win
 atom gl_init = glfwInit()
