@@ -3,7 +3,7 @@
 --Icy Viking Games
 --GLFW 3.4.0
 --Euphoria 4.1.0 Beta 2
---Copyright (c) 2023
+--Copyright (c) 2024
 
 include std/ffi.e
 include std/os.e
@@ -1094,4 +1094,4 @@ export constant xglfwCreateWindowSurface = define_c_func(gl,"+glfwCreateWindowSu
 public function glfwCreateWindowSurface(atom inst,atom win,atom alloc,atom surf)
 	return c_func(xglfwCreateWindowSurface,{inst,win,alloc,surf})
 end function
-­381.18
+Â­381.18
