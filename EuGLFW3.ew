@@ -1,3 +1,4 @@
+--Deprecated
 include std/machine.e
 include std/dll.e
 include std/math.e
@@ -1124,4 +1125,4 @@ public function glfwGetJoystickUserPointer(atom id)
  return c_func(xglfwGetJoystickUserPointer,{id})
 	
 end function
-­15.42
+Â­15.42
