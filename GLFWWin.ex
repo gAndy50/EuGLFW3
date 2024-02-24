@@ -26,4 +26,4 @@ while not glfwWindowShouldClose(win) do
 end while
 
 glfwTerminate()
-­23.14
+Â­23.14
