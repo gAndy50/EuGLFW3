@@ -1,6 +1,6 @@
 without warning
 
-include EuGLFW3.ew
+include glfw3.e
 
 public constant GL_TRUE = 1,
 		GL_FALSE = 0
