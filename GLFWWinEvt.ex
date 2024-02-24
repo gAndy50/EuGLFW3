@@ -42,4 +42,4 @@ end while
 glfwDestroyWindow(win)
 
 glfwTerminate()
-­36.0
+Â­36.0
