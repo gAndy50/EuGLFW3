@@ -2,7 +2,7 @@ Title: EuGLFw3
 Author: Andy P.
 Platform: Windows
 Binding: Euphoria Programming Language
-Binds GLFW3 version: 3.3.4
+Binds GLFW3 version: 3.4.0
 Developed With: Euphoria 4.1.0 Beta 2
 Contact/Paypal: paypal.me/IcyViking
 
@@ -22,33 +22,3 @@ helpful. EuGLFW3 is provided as-is. GLFW3 is under the license zlib/libpng. Ples
 offical website for more information.
 
 GLFW3 is hosted at http://www.glfw.org 
-
-Updates:
-
-5-8-15
-
-Fixed old code. Updated demos.
-
-6-2-16
-
-Updated for GLFW 3.2.0
-
-8-21-16
-
-Updated for GLFW 3.2.1
-
-4-16-19
-
-Updated for GLFW 3.3.0
-
-1-2-20
-
-Updated for GLFW 3.3.1
-
-12-17-20
-
-Updated for GLFW 3.3.2
-
-4-15-21
-
-Updated for GLFW 3.3.4
