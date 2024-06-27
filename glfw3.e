@@ -9,7 +9,7 @@ include std/ffi.e
 include std/os.e
 include std/math.e
 
-public atom gl = 0
+public atom gl
 
 ifdef WINDOWS then
 	gl = open_dll("glfw3.dll")
@@ -18,6 +18,11 @@ ifdef WINDOWS then
 	elsifdef OSX then
 	gl = open_dll("libglfw3.dylib")
 end ifdef
+
+if gl = 0 then
+ puts(1,"Failed to open GLFW3!\n")
+ abort(0)
+end if
 
 --Flags
 public constant GLFW_VERSION_MAJOR = 3,
