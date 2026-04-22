@@ -3,7 +3,7 @@
 --Icy Viking Games
 --GLFW 3.4.0
 --Euphoria 4.1.0 Beta 2
---Copyright (c) 2024
+--Copyright (c) 2026
 
 include std/ffi.e
 include std/os.e
